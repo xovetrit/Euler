@@ -7,48 +7,50 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
-  fib = [];
-  fibFilter4000000 = [];
-  fibFilterEven = [];
-  fibSumEven4000000 = 0;
+  simpleNumbers = [];
+  number = 10000;
+  delNumber = 600851475143;
+  delNumberSimpleNumbers = [];
+  delNumberSimpleNumbersMax = 0;
 
-  constructor() {
+  constructor(){
+    
+    var index = 0;
+    var count = 0;
+    
+    for ( var i = 0; i < this.number; i++ ){
+       if ( count == 2 ) {
+        this.simpleNumbers[index] = i - 1;
+        index++;
+        count = 0;
+      }
+      else if ( count > 2 || count == 1 ) {
+        count = 0;
+      }
+      for ( var y = i; y > 0; y-- ){
+        if ( i % y == 0) {
+          count++;
+        }
+      }
+    }
 
-    for (var i = 1; i < 40; i++ ) {
+    var x = 0;
+    for ( var i = 0; i < this.simpleNumbers.length; i++ ){
+      if ( this.delNumber % this.simpleNumbers[i] == 0 ) {
+        this.delNumberSimpleNumbers[x] = this.simpleNumbers[i];
+        x++;
+      }
+    }
 
-      if ( i <= 2 ){
-       this.fib[i-1] = i;
-      }  
-      else {
-        this.fib[i-1] = this.fib[i - 2] + this.fib[i - 3];
+    for ( var i = 0; i < this.delNumberSimpleNumbers.length; i++ ){
+      if ( i == this.delNumberSimpleNumbers.length - 1 ) {
+        this.delNumberSimpleNumbersMax = this.delNumberSimpleNumbers[i];
       }
     }
 
 
-    for ( var i = 0; i < this.fib.length; i++ ){
-      if ( this.fib[i] >= 4000000 ) {
-        break;
-      }
-      else {
-        this.fibFilter4000000[i] = this.fib[i];
-      }
-    }
 
-    var y = 0;
-    for ( var i = 0; i < this.fibFilter4000000.length; i++){
-      if ( this.fibFilter4000000[i] % 2 == 0 ) {
-        this.fibFilterEven[y] = this.fibFilter4000000[i];
-        y++;
-      }
-    }
 
-    for ( var i = 0; i < this.fibFilterEven.length; i++ ){
-      this.fibSumEven4000000 += this.fibFilterEven[i];
-    }
-
-    // console.log(this.fib);
-    // console.log(this.fibFilter4000000);
-    // console.log(this.fibFilterEven); 
-    // console.log(this.fibSumEven4000000);
   }
 }
+
