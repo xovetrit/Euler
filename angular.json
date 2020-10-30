@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Euler"
+    }
+  },
+  "defaultProject": "Euler",
+  "cli": {
+    "analytics": false
+  }
 }
