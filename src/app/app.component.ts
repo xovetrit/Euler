@@ -6,51 +6,53 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  
-  simpleNumbers = [];
-  number = 10000;
-  delNumber = 600851475143;
-  delNumberSimpleNumbers = [];
-  delNumberSimpleNumbersMax = 0;
 
+  code = `
   constructor(){
-    
+
+    var PalindromeArr = [];
     var index = 0;
-    var count = 0;
-    
-    for ( var i = 0; i < this.number; i++ ){
-       if ( count == 2 ) {
-        this.simpleNumbers[index] = i - 1;
-        index++;
-        count = 0;
-      }
-      else if ( count > 2 || count == 1 ) {
-        count = 0;
-      }
-      for ( var y = i; y > 0; y-- ){
-        if ( i % y == 0) {
-          count++;
+
+    for (var x = 100; x <= 999; x ++ ) {
+      for ( var y = 100; y <= 999; y++ ) {
+        var sum =  x * y
+        var sumStr = sum.toString()
+        var sumSplit = sumStr.split("")
+        var sumReverse =  sumSplit.reverse().join("")
+        if ( sumStr === sumReverse) {
+          PalindromeArr[index++] = sumStr;
         }
       }
     }
+    var max = Math.max(...PalindromeArr)
+    console.log("Max Palindrome: " + max)
 
-    var x = 0;
-    for ( var i = 0; i < this.simpleNumbers.length; i++ ){
-      if ( this.delNumber % this.simpleNumbers[i] == 0 ) {
-        this.delNumberSimpleNumbers[x] = this.simpleNumbers[i];
-        x++;
+  }`
+
+
+  MaxPalindrome = 0;
+
+  constructor(){
+
+    var PalindromeArr = [];
+    var index = 0;
+
+    for (var x = 100; x <= 999; x ++ ) {
+      for ( var y = 100; y <= 999; y++ ) {
+        var sum =  x * y
+        var sumStr = sum.toString()
+        var sumSplit = sumStr.split("")
+        var sumReverse =  sumSplit.reverse().join("")
+        if ( sumStr === sumReverse) {
+          PalindromeArr[index++] = sumStr;
+        }
       }
     }
-
-    for ( var i = 0; i < this.delNumberSimpleNumbers.length; i++ ){
-      if ( i == this.delNumberSimpleNumbers.length - 1 ) {
-        this.delNumberSimpleNumbersMax = this.delNumberSimpleNumbers[i];
-      }
-    }
-
-
-
+    var max = Math.max(...PalindromeArr)
+    this.MaxPalindrome = max;
+    console.log("Max Palindrome: " + max)
 
   }
+
 }
 
