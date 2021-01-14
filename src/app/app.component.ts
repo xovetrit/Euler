@@ -7,51 +7,45 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  otvet = 0;
+
   code = `
-  constructor(){
+  var count = 0;
 
-    var PalindromeArr = [];
-    var index = 0;
-
-    for (var x = 100; x <= 999; x ++ ) {
-      for ( var y = 100; y <= 999; y++ ) {
-        var sum =  x * y
-        var sumStr = sum.toString()
-        var sumSplit = sumStr.split("")
-        var sumReverse =  sumSplit.reverse().join("")
-        if ( sumStr === sumReverse) {
-          PalindromeArr[index++] = sumStr;
+    for ( var x = 1; x <= 300000000; x++) {
+      for ( var y = 1; y<= 20; y++ ) {
+        if ( x % y === 0) {
+          count++;
+        }
+        else {
+          count = 0;
+        }
+        if ( count === 20) {
+          console.log(x)
         }
       }
     }
-    var max = Math.max(...PalindromeArr)
-    console.log("Max Palindrome: " + max)
 
-  }`
-
-
-  MaxPalindrome = 0;
+  `
 
   constructor(){
 
-    var PalindromeArr = [];
-    var index = 0;
+    var count = 0;
 
-    for (var x = 100; x <= 999; x ++ ) {
-      for ( var y = 100; y <= 999; y++ ) {
-        var sum =  x * y
-        var sumStr = sum.toString()
-        var sumSplit = sumStr.split("")
-        var sumReverse =  sumSplit.reverse().join("")
-        if ( sumStr === sumReverse) {
-          PalindromeArr[index++] = sumStr;
+    for ( var x = 2520; x <= 300000000; x++) {
+      for ( var y = 1; y<= 20; y++ ) {
+        if ( x % y === 0) {
+          count++;
+        }
+        else {
+          count = 0;
+        }
+        if ( count === 20) {
+          console.log(x)
+          this.otvet = x;
         }
       }
     }
-    var max = Math.max(...PalindromeArr)
-    this.MaxPalindrome = max;
-    console.log("Max Palindrome: " + max)
-
   }
 
 }
